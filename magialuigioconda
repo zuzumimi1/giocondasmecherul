@@ -81,8 +81,8 @@ while ($true) {
         $pair = $config[$idx % $config.Count]
         $idx++
 
-        $downDelay = [Math]::Max(1, $pair[0] + $rand.Next(-2,2))
-        $upDelay   = [Math]::Max(1, $pair[1] + $rand.Next(-2,2))
+        $downDelay = [Math]::Max(1, $pair[0] + $rand.Next(-2,3))
+        $upDelay   = [Math]::Max(1, $pair[1] + $rand.Next(-2,3))
 
         if ($doLeft)  { [Win32]::mouse_event([Win32]::LEFTDOWN,  0,0,0,0) }
         if ($doRight) { [Win32]::mouse_event([Win32]::RIGHTDOWN, 0,0,0,0) }
