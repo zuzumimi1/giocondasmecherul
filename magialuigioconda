@@ -66,8 +66,8 @@ function SpinWaitMs($ms) {
     while ($sw.ElapsedMilliseconds -lt $ms) { }
 }
 
-Write-Host "Clicker ACTIVEEEEE"
-Write-Host "F12 sa iesi sclavule"
+Write-Host "Facut de Zureh" -ForegroundColor blue
+Write-Host "Ca sa iesi F12 Milogule" -foregroundColor red
 
 while ($true) {
 
