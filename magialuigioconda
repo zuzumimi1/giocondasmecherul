@@ -81,17 +81,22 @@ while ($true) {
         $pair = $config[$idx % $config.Count]
         $idx++
 
-        $downDelay = [Math]::Max(1, $pair[0] + $rand.Next(-2,3))
-        $upDelay   = [Math]::Max(1, $pair[1] + $rand.Next(-3,4))
+        # ---- Ajustare pentru 18-22 CPS ----
+        # Reduce delay-urile pentru a crește click-urile
+        $downDelay = [Math]::Max(1, $pair[0] - 5 + $rand.Next(-2,3))
+        $upDelay   = [Math]::Max(1, $pair[1] - 5 + $rand.Next(-2,3))
 
-        if ($doLeft)  { [Win32]::mouse_event([Win32]::LEFTDOWN,  0,0,0,0) }
-        if ($doRight) { [Win32]::mouse_event([Win32]::RIGHTDOWN, 0,0,0,0) }
+        # Simulare butterfly mic: două mini-click-uri rapid alternante
+        for ($finger=0; $finger -lt 2; $finger++) {
+            if ($doLeft)  { [Win32]::mouse_event([Win32]::LEFTDOWN,  0,0,0,0) }
+            if ($doRight) { [Win32]::mouse_event([Win32]::RIGHTDOWN, 0,0,0,0) }
 
-        SpinWaitMs $downDelay
+            SpinWaitMs($downDelay + $rand.Next(-1,2)) # jitter foarte mic
 
-        if ($doLeft)  { [Win32]::mouse_event([Win32]::LEFTUP,  0,0,0,0) }
-        if ($doRight) { [Win32]::mouse_event([Win32]::RIGHTUP, 0,0,0,0) }
+            if ($doLeft)  { [Win32]::mouse_event([Win32]::LEFTUP, 0,0,0,0) }
+            if ($doRight) { [Win32]::mouse_event([Win32]::RIGHTUP, 0,0,0,0) }
 
-        SpinWaitMs $upDelay
+            SpinWaitMs($upDelay + $rand.Next(-1,2))   # jitter foarte mic
+        }
     }
 }
