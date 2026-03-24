@@ -67,7 +67,7 @@ function SpinWaitMs($ms) {
 }
 
 Write-Host "Facut de Gioconda si n am chef sa ma joc legit" -ForegroundColor green
-Write-Host "Ca sa iesi F12 Milog mic ce esti" -foregroundColor white
+Write-Host "Ca sa iesi F12 Milog mic ce esti" -foregroundColor green
 
 while ($true) {
 
